@@ -10,7 +10,7 @@ public class CollectionTestSuite {
     public OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
 
     @Before
-    public  void before() {
+    public void before() {
         System.out.println("Test case: begin");
     }
 
@@ -20,12 +20,12 @@ public class CollectionTestSuite {
     }
 
     @BeforeClass
-    public void beforeClass() {
+    public static void beforeClass() {
         System.out.println("Test suite: begin");
     }
 
     @AfterClass
-    public void afterClass() {
+    public static void afterClass() {
         System.out.println("Test suite: end");
     }
 
@@ -34,7 +34,7 @@ public class CollectionTestSuite {
         //Given
         ArrayList<Integer> emptyList = new ArrayList<Integer>();
         //When
-        ArrayList resultList = new ArrayList<>(oddNumbersExterminator.exterminate(emptyList));
+        ArrayList resultList = oddNumbersExterminator.exterminate(emptyList);
         //Then
         Assert.assertEquals(emptyList, resultList);
     }
@@ -46,10 +46,10 @@ public class CollectionTestSuite {
             testNumbers.add(i);
         }
         //When
-        ArrayList<Integer> resultEvenNumbers = new ArrayList<>(oddNumbersExterminator.exterminate(testNumbers));
+        ArrayList<Integer> resultEvenNumbers = oddNumbersExterminator.exterminate(testNumbers);
         //Then
         ArrayList<Integer> expectedList = new ArrayList<Integer>();
-        for(int n = 2; n <= 10; n =+ 2) {
+        for(int n = 2; n <= 10; n += 2) {
             expectedList.add(n);
         }
         Assert.assertEquals(expectedList, resultEvenNumbers);
