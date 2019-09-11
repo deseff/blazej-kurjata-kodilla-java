@@ -7,7 +7,7 @@ public class TemperaturesStub implements Temperatures {
     public HashMap<Integer, Double> getTemperatures() {
         HashMap<Integer, Double> stubResult = new HashMap<>();
 
-        // dummy data
+        // dummy data,
         stubResult.put(0, 25.5);
         stubResult.put(1, 26.2);
         stubResult.put(2, 24.8);

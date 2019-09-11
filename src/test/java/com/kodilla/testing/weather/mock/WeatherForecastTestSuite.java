@@ -13,7 +13,7 @@ import static org.mockito.Mockito.when;
 public class WeatherForecastTestSuite {
     @Test
     public void testCalculateForecastWithMock() {
-        //Given
+        //Given,
         Temperatures temperaturesMock = mock(Temperatures.class);
         HashMap<Integer, Double> temperaturesMap = new HashMap<>();
         temperaturesMap.put(0, 25.5);
