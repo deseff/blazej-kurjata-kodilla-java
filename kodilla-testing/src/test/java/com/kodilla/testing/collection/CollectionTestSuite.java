@@ -7,7 +7,7 @@ import java.util.*;
 
 
 public class CollectionTestSuite {
-    public OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
+    private OddNumbersExterminator oddNumbersExterminator = new OddNumbersExterminator();
 
     @Before
     public void before() {
