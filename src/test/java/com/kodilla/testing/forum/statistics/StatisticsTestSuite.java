@@ -1,6 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -11,15 +10,14 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class StatisticsTestSuite {
-    private Statistics statisticsMock;
-    private ForumStatistics forumStatistics;
+
     @Test
     public void testCalculateAdvStatisticsWhenNumberOfPostEqualsZero() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
         List<String> usersNames = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
-            usersNames.add(i, "user" + (i+1));
+        for (int i = 0; i < 100; i++) {
+            usersNames.add(i, "user" + (i + 1));
         }
         when(statisticsMock.usersNames()).thenReturn(usersNames);
         when(statisticsMock.postsCount()).thenReturn(0);
@@ -30,14 +28,15 @@ public class StatisticsTestSuite {
         //Then
         Assert.assertEquals(0, forumStatistics.getAvgPostPerUser(), 0.01);
         Assert.assertEquals(0, forumStatistics.getAvgCommentsPerUser(), 0.01);
-        Assert.assertEquals(0,forumStatistics.getAvgCommentsPerPost(),0.01);
+        Assert.assertEquals(0, forumStatistics.getAvgCommentsPerPost(), 0.01);
     }
+
     @Test
     public void testCalculateAdvStatisticsWhenNumberOfPostsEqualsThousand() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
         List<String> usersNames = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             usersNames.add(i, "User" + (i + 1));
         }
         when(statisticsMock.usersNames()).thenReturn(usersNames);
@@ -54,12 +53,13 @@ public class StatisticsTestSuite {
         Assert.assertEquals(20, forumStatistics.getAvgCommentsPerUser(), 0.01);
         Assert.assertEquals(2, forumStatistics.getAvgCommentsPerPost(), 0.01);
     }
+
     @Test
     public void testCalculateAdvStatisticsWhenNumberOfCommentsEqualsZero() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
         List<String> usersNames = new ArrayList<>();
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             usersNames.add(i, "User" + (i + 1));
         }
         when(statisticsMock.usersNames()).thenReturn(usersNames);
@@ -72,12 +72,13 @@ public class StatisticsTestSuite {
         Assert.assertEquals(0, forumStatistics.getAvgCommentsPerUser(), 0.01);
         Assert.assertEquals(0, forumStatistics.getAvgCommentsPerPost(), 0.01);
     }
+
     @Test
     public void testCalculateAdvStatisticsWhenCommentsLessThanPosts() {
         //Given
         Statistics statisticsMock = mock(Statistics.class);
         List<String> usersNames = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             usersNames.add(i, "User" + (i + 1));
         }
         when(statisticsMock.usersNames()).thenReturn(usersNames);
@@ -105,6 +106,6 @@ public class StatisticsTestSuite {
         //Then
         Assert.assertEquals(0, forumStatistics.getUsersQuantity());
         Assert.assertEquals(0, forumStatistics.getAvgPostPerUser(), 0.01);
-        Assert.assertEquals(0,forumStatistics.getAvgCommentsPerUser(), 0.01);
+        Assert.assertEquals(0, forumStatistics.getAvgCommentsPerUser(), 0.01);
     }
 }

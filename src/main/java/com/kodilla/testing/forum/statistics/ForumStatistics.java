@@ -1,8 +1,5 @@
 package com.kodilla.testing.forum.statistics;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ForumStatistics {
 
     private int usersQuantity;
@@ -12,7 +9,8 @@ public class ForumStatistics {
     private double avgCommentsPerUser;
     private double avgCommentsPerPost;
 
-    public ForumStatistics(Statistics statistics){}
+    public ForumStatistics(Statistics statistics) {
+    }
 
     public int getUsersQuantity() {
         return usersQuantity;
@@ -48,8 +46,8 @@ public class ForumStatistics {
     }
 
     private double calculateAvgPostPerUser() {
-        if(usersQuantity > 0) {
-            avgPostPerUser = postsQuantity / usersQuantity;
+        if (usersQuantity > 0) {
+            avgPostPerUser = (double) postsQuantity / usersQuantity;
             return avgPostPerUser;
         } else {
             return 0;
@@ -57,16 +55,17 @@ public class ForumStatistics {
     }
 
     private double calculateAvgCommentsPerUser() {
-        if(usersQuantity > 0) {
-            avgCommentsPerUser = commentsQuantity / usersQuantity;
+        if (usersQuantity > 0) {
+            avgCommentsPerUser = (double) commentsQuantity / usersQuantity;
             return avgCommentsPerUser;
         } else {
             return 0;
         }
     }
+
     private double calculateAvgCommentsPerPost() {
-        if(postsQuantity > 0) {
-            avgCommentsPerPost = commentsQuantity / postsQuantity;
+        if (postsQuantity > 0) {
+            avgCommentsPerPost = (double) commentsQuantity / postsQuantity;
             return avgCommentsPerPost;
         } else {
             return 0;
