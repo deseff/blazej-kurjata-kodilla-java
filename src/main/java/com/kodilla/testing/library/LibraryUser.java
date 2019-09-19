@@ -23,7 +23,7 @@ public class LibraryUser {
         return peselID;
     }
 
-    @Override
+    @Override //
     public String toString() {
         return "LibraryUser{" +
                 "firstname='" + firstname + '\'' +
