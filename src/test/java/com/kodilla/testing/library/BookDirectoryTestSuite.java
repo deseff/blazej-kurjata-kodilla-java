@@ -93,7 +93,7 @@ public class BookDirectoryTestSuite {
 
     @Test
     public void testListBooksInHandsOfWithOneBookBorrowed() {
-        //Given
+        // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
         LibraryUser libraryUser = new LibraryUser("F", "L", "666666");
         List<Book> borrowed1Book = generateListOfNBooks(1);
