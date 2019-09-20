@@ -33,3 +33,4 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
     }
 }
+

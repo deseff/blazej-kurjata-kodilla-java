@@ -17,3 +17,4 @@ public class FunctionalCalculator {
         return a / b;
     }
 }
+
