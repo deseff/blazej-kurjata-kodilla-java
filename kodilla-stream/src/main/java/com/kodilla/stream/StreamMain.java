@@ -1,5 +1,7 @@
 package com.kodilla.stream;
 
+import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.beautifier.PoemDecorator;
 import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.reference.FunctionalCalculator;
 
@@ -10,15 +12,15 @@ public class StreamMain {
         SaySomething saySomething = new SaySomething();
         saySomething.say();*/
 
-        Processor processor = new Processor();
-        //ExecuteSaySomething executeSaySomething = new ExecuteSaySomething(); - nie lambda
+        /*Processor processor = new Processor();
+        //ExecuteSaySomething executeSaySomething = new ExecuteSaySomething(); - not lambda
         Executor codeToExecute = () -> System.out.println("This is an example text"); //lambda
-        //processor.execute(executeSaySomething); - nie lambda
-        processor.execute(codeToExecute); //lambda
+        //processor.execute(executeSaySomething); - not lambda
+        processor.execute(codeToExecute); //lambda*/
 
 
-        //kolejny przykład
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+        //next example
+        /*ExpressionExecutor expressionExecutor = new ExpressionExecutor();
 
         System.out.println("Calculating expressions with lambdas");
         expressionExecutor.executeExpression(10, 5, (a, b) -> a + b);
@@ -30,7 +32,14 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::multiplyAByB);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::addAToB);
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::subBFromA);
-        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);
+        expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);*/
+
+        //Module 7.1 - task
+        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        poemBeautifier.beautify("What a beautiful world", text -> "ABC" + text + "ABC");
+        poemBeautifier.beautify("Biological hazard", text -> text.toUpperCase());
+        poemBeautifier.beautify("Not important content", text -> text.toLowerCase());
+        poemBeautifier.beautify("This is very important", text -> text + "!!!");
     }
 }
 
