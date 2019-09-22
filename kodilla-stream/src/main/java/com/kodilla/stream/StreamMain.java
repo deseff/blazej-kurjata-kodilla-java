@@ -4,11 +4,15 @@ import com.kodilla.stream.beautifier.PoemBeautifier;
 import com.kodilla.stream.beautifier.PoemDecorator;
 import com.kodilla.stream.book.Book;
 import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
 import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.*;
 import com.kodilla.stream.person.People;
 
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -42,7 +46,7 @@ public class StreamMain {
         expressionExecutor.executeExpression(3, 4, FunctionalCalculator::divideAByB);*/
 
         //Module 7.1 - task
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
+        /*PoemBeautifier poemBeautifier = new PoemBeautifier();
         poemBeautifier.beautify("What a beautiful world", text -> "ABC" + text + "ABC");
         poemBeautifier.beautify("Biological hazard", text -> text.toUpperCase());
         poemBeautifier.beautify("Not important content", text -> text.toLowerCase());
@@ -59,7 +63,7 @@ public class StreamMain {
                 .filter(s -> s.length() > 11)
                 .map(s -> s.substring(0, s.indexOf(' ') + 2) + ".")
                 .filter(s -> s.substring(0, 1).equals("M"))
-                .forEach(s -> System.out.println(s));
+                .forEach(s -> System.out.println(s));*/
 
         //class Book in package Book
         /*BookDirectory theBookDirectory = new BookDirectory();
@@ -84,12 +88,22 @@ public class StreamMain {
                 .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);*/
 
-        BookDirectory theBookDirectory = new BookDirectory();
+        /*BookDirectory theBookDirectory = new BookDirectory();
         String theResultStringOfBooks = theBookDirectory.getList().stream()
                 .filter(book -> book.getYearOfPublication() > 2005)
                 .map(Book::toString)
                 .collect(Collectors.joining(",\n","<<",">>"));
-        System.out.println(theResultStringOfBooks);
+        System.out.println(theResultStringOfBooks);*/
+
+        //Module 7.3 - task
+        Forum theForum = new Forum();
+        Map<String, ForumUser> theResultMapOfUsers = theForum.getUserList().stream()
+                .filter(user -> user.getSex() == 'M')
+                .filter(user -> user.getBirthDate() - LocalDate.now() => 20)
+                .filter(user -> user.getNumberOfPostsPublished() => 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserID, user -> user))
+                .forEach(System.out::println);
+
     }
 }
 
