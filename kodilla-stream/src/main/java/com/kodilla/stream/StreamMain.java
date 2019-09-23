@@ -97,13 +97,14 @@ public class StreamMain {
 
         //Module 7.3 - task
         Forum theForum = new Forum();
-        Map<String, ForumUser> theResultMapOfUsers = theForum.getUserList().stream()
+        Map<Integer, ForumUser> theResultMapOfUsers = theForum.getUserList().stream()
                 .filter(user -> user.getSex() == 'M')
-                .filter(user -> user.getBirthDate() - LocalDate.now() => 20)
-                .filter(user -> user.getNumberOfPostsPublished() => 1)
-                .collect(Collectors.toMap(ForumUser::getUniqueUserID, user -> user))
+                .filter(user -> LocalDate.now().getYear() - user.getBirthDate().getYear() >= 20)
+                .filter(user -> user.getNumberOfPostsPublished() > 0)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserID, user -> user));
+        theResultMapOfUsers.entrySet().stream()
+                .map(entry -> entry.getKey() + ": " + entry.getValue())
                 .forEach(System.out::println);
-
     }
 }
 

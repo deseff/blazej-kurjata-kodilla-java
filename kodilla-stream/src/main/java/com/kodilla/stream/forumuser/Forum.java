@@ -18,12 +18,14 @@ public class Forum {
             } else {
                 sex = 'M';
             }
-            LocalDate birthDate = LocalDate.parse(1989 + n + "-" + 11 + "-" + n);
+            LocalDate birthDate = LocalDate.of(1989 + n, 11, n);
             int numberOfPostPublished = theForumUsers.size();
             theForumUsers.add(new ForumUser(uniqueUserID, userName, sex, birthDate, numberOfPostPublished));
         }
-        public List<ForumUser> getUserList() {
-            return new ArrayList<>(theForumUsers);
-        }
+    }
+
+    public List<ForumUser> getUserList() {
+        return new ArrayList<>(theForumUsers);
     }
 }
+
