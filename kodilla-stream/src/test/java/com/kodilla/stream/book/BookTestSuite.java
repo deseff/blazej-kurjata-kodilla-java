@@ -36,6 +36,22 @@ public class BookTestSuite {
         List<Book> books = bookDirectory.getList();
 
         //Then
+        int numberOfBooksPublicatedAfter2007 = IntStream.range(0, books.size())
+                .filter(n -> books.get(n).getYearOfPublication() > 2007)
+                .map(n -> 1)
+                .sum();
+        Assert.assertEquals(3,numberOfBooksPublicatedAfter2007);
+    }
+
+    @Test
+    public void testGetListUsingIntStream1() {
+        //Given
+        BookDirectory bookDirectory = new BookDirectory();
+
+        //When
+        List<Book> books = bookDirectory.getList();
+
+        //Then
         long numberOfBooksPublicatedAfter2007 = (int) IntStream.range(0, books.size())
                 .filter(n -> books.get(n).getYearOfPublication() > 2007)
                 .count();
