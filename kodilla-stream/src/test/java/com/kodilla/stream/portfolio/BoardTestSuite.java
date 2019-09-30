@@ -151,7 +151,7 @@ public class BoardTestSuite {
         //Given
         Board project = prepareTestData();
 
-        //When
+        //When1 - two streams: sumOfDays and numberOfTasks
         List<TaskList> inProgressTasks = new ArrayList<>();
         inProgressTasks.add(new TaskList("In progress"));
         int sumOfDays = project.getTaskLists().stream()
@@ -159,16 +159,27 @@ public class BoardTestSuite {
                 .flatMap(tl -> tl.getTasks().stream())
                 .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
                 .reduce(0, (sum, current) -> sum += current);
-        int numberOfTasks = project.getTaskLists().stream()
+        long numberOfTasks = project.getTaskLists().stream()
                 .filter(inProgressTasks::contains)
                 .flatMap(tl -> tl.getTasks().stream())
-                .map(task -> Period.between(task.getCreated(), LocalDate.now()).getDays())
                 .map(t -> 1)
-                .reduce(0, (sum, current) -> sum += current);
+                .count();
 
-        double averageDuration = sumOfDays / numberOfTasks;
+        double averageDuration = (double)sumOfDays / numberOfTasks;
 
-        //Then
+        //Then1
         Assert.assertEquals(10, averageDuration, 0.001);
+
+        //When2 - stream().average()
+        double avg = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
+                .mapToDouble(a -> a)
+                .average()
+                .getAsDouble();
+
+        //Then2
+        Assert.assertEquals(10,avg, 0.001);
     }
 }

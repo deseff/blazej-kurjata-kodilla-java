@@ -34,6 +34,7 @@ public final class TaskList {
 
         TaskList taskList = (TaskList) o;
 
+        //if (!tasks.equals(taskList.tasks)) return false; //to jest linia, która powoduje, że testy nie przechodzą
         return name.equals(taskList.name);
     }
 }
