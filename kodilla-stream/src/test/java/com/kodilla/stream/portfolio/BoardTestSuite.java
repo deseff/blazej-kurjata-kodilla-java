@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 import java.time.LocalDate;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -142,5 +143,43 @@ public class BoardTestSuite {
 
         //Then
         Assert.assertEquals(2, longTasks);
+    }
+
+    //Zadanie 7.6 - średnia ilość dni realizacji zadania
+    @Test
+    public void testAddTaskListAverageWorkingOnTask() {
+        //Given
+        Board project = prepareTestData();
+
+        //When1 - two streams: sumOfDays and numberOfTasks
+        List<TaskList> inProgressTasks = new ArrayList<>();
+        inProgressTasks.add(new TaskList("In progress"));
+        int sumOfDays = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
+                .reduce(0, (sum, current) -> sum += current);
+        long numberOfTasks = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> 1)
+                .count();
+
+        double averageDuration = (double)sumOfDays / numberOfTasks;
+
+        //Then1
+        Assert.assertEquals(10, averageDuration, 0.001);
+
+        //When2 - stream().average()
+        double avg = project.getTaskLists().stream()
+                .filter(inProgressTasks::contains)
+                .flatMap(tl -> tl.getTasks().stream())
+                .map(t -> Period.between(t.getCreated(), LocalDate.now()).getDays())
+                .mapToDouble(a -> a)
+                .average()
+                .getAsDouble();
+
+        //Then2
+        Assert.assertEquals(10,avg, 0.001);
     }
 }
