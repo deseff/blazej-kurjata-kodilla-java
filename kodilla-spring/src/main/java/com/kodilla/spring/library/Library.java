@@ -7,11 +7,22 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class Library {
+public final class Library {
     private final List<String> books = new ArrayList<>();
-
-    @Autowired
     private LibraryDbController libraryDbController;
+
+    //Konfiguracja Beanów przy pomocy klasy Java
+    public Library(final LibraryDbController libraryDbController) {
+        this.libraryDbController = libraryDbController;
+    }
+
+    public Library() {
+
+    }
+
+
+    /*@Autowired //Wstrzykiwanie zależności do właściwości klasy
+    private LibraryDbController libraryDbController;*/
 
     /*@Autowired //wstrzykiwanie Beanów przez konstruktor
     public Library(LibraryDbController libraryDbController) {
