@@ -4,5 +4,7 @@ public class DeleteMeLater {
 
     public DeleteMeLater() {
         System.out.println("bla bla");
+
+        System.out.println("exit");
     }
 }
