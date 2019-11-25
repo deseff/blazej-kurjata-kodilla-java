@@ -37,7 +37,6 @@ public class LibraryTestSuite {
         library.getBooks().add(new Book("Book", "Author", LocalDate.of(2019, 11, 23)));
 
         //Then
-
         System.out.println(library);
         System.out.println(shallowClonedLibrary);
         System.out.println(deepClonedLibrary);
