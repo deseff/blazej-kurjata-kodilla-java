@@ -20,18 +20,12 @@ public class LibraryTestSuite {
                         LocalDate.of(2019, n, n * 2))));
 
         //creating a shallow copy of library
-        Library shallowClonedLibrary = null;
-        shallowClonedLibrary = library.shallowCopy();
-        if (shallowClonedLibrary != null) {
-            shallowClonedLibrary.setName("City library");
-        } else throw new CloneNotSupportedException("City library not found");
+        Library shallowClonedLibrary = library.shallowCopy();
+        shallowClonedLibrary.setName("City library");
 
         //creating a deep copy of library
-        Library deepClonedLibrary = null;
-        deepClonedLibrary = library.deepCopy();
-        if(deepClonedLibrary != null) {
-            deepClonedLibrary.setName("National library");
-        } else throw new CloneNotSupportedException("National library not found");
+        Library deepClonedLibrary = library.deepCopy();
+        deepClonedLibrary.setName("National library");
 
         //When
         library.getBooks().add(new Book("Book", "Author", LocalDate.of(2019, 11, 23)));
