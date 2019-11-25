@@ -35,4 +35,13 @@ public final class Library extends PrototypeLibrary {
         }
         return clonedLibrary;
     }
+
+    @Override
+    public String toString() {
+        String l = "   Library [" + name + "]";
+        for(Book book : books) {
+            l = l + "\n" + book.toString();
+        }
+        return l;
+    }
 }

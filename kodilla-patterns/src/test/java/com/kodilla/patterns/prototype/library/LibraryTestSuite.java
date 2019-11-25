@@ -9,38 +9,35 @@ import java.util.stream.IntStream;
 public class LibraryTestSuite {
 
     @Test
-    public void testGetBooks() {
+    public void testGetBooks() throws CloneNotSupportedException {
         //Given
         Library library = new Library("Local library");
         //creating books
         IntStream.iterate(1, n -> n + 1)
                 .limit(10)
-                .forEach(n -> library.getBooks().add(new Book("Book number" + n,
+                .forEach(n -> library.getBooks().add(new Book("Book " + n,
                         "Author " + n * 10,
                         LocalDate.of(2019, n, n * 2))));
 
         //creating a shallow copy of library
         Library shallowClonedLibrary = null;
-        try {
-            shallowClonedLibrary = library.shallowCopy();
+        shallowClonedLibrary = library.shallowCopy();
+        if (shallowClonedLibrary != null) {
             shallowClonedLibrary.setName("City library");
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e);
-        }
+        } else throw new CloneNotSupportedException("City library not found");
 
         //creating a deep copy of library
         Library deepClonedLibrary = null;
-        try {
-            deepClonedLibrary = library.deepCopy();
+        deepClonedLibrary = library.deepCopy();
+        if(deepClonedLibrary != null) {
             deepClonedLibrary.setName("National library");
-        } catch (CloneNotSupportedException e) {
-            System.out.println(e);
-        }
+        } else throw new CloneNotSupportedException("National library not found");
 
         //When
-        library.getBooks().add(new Book("Title", "Author", LocalDate.of(2019, 11, 23)));
+        library.getBooks().add(new Book("Book", "Author", LocalDate.of(2019, 11, 23)));
 
         //Then
+
         System.out.println(library);
         System.out.println(shallowClonedLibrary);
         System.out.println(deepClonedLibrary);

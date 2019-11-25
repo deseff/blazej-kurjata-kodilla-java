@@ -3,9 +3,9 @@ package com.kodilla.patterns.prototype.library;
 import java.time.LocalDate;
 
 public class Book {
-    final String title;
-    final String author;
-    final LocalDate publicationDate;
+    private final String title;
+    private final String author;
+    private final LocalDate publicationDate;
 
     public Book(final String title, final String author, final LocalDate publicationDate) {
         this.title = title;
@@ -27,7 +27,7 @@ public class Book {
 
     @Override
     public String toString() {
-        return "Book{" +
+        return "     Book{" +
                 "title='" + title + '\'' +
                 ", author='" + author + '\'' +
                 ", publicationDate=" + publicationDate +
