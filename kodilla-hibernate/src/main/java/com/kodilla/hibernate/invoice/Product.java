@@ -31,12 +31,12 @@ public class Product {
     }
 
     @OneToMany(
-            targetEntity = Product.class,
+            targetEntity = Item.class,
             mappedBy = "product",
-            cascade = CascadeType.ALL,
+//            cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    @Column(name = "ITEM_ID")
+//    @Column(name = "ITEM_ID")
     public Item getItem() {
         return item;
     }
