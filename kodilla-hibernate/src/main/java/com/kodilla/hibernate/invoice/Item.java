@@ -21,7 +21,7 @@ public class Item {
         this.product = product;
         this.price = price;
         this.quantity = quantity;
-        value = value.multiply(price.valueOf(quantity));
+        value = price.multiply(new BigDecimal(quantity));
     }
 
     @Id
@@ -32,7 +32,7 @@ public class Item {
         return id;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "PRODUCT_ID")
     public Product getProduct() {
         return product;
@@ -54,7 +54,7 @@ public class Item {
         return value;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "ITEM_INVOICE_ID")
     public Invoice getInvoice() {
         return invoice;

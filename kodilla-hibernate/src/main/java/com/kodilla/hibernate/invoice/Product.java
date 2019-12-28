@@ -51,7 +51,7 @@ public class Product {
         this.name = name;
     }
 
-    public void setItem(List<Item> items) {
+    public void setItems(List<Item> items) {
         this.items = items;
     }
 }
