@@ -9,11 +9,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.util.List;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class CompanyDaoTestSuite {
     @Autowired
     CompanyDao companyDao;
+
+    @Autowired
+    EmployeeDao employeeDao;
 
     @Test
     public void testSaveManyToMany() {
@@ -59,5 +64,56 @@ public class CompanyDaoTestSuite {
         } catch (Exception e) {
             //do nothing
         }
+    }
+
+    @Test
+    public void testCompanyAndEmployeeNamedQueries() {
+        //Given
+        Employee louisArmstrong = new Employee("Louis", "Armstrong");
+        Employee frankSinatra = new Employee("Frank", "Sinatra");
+        Employee ellaFitzgerald = new Employee("Ella", "Fitzgerald");
+
+        Company hotFive = new Company("Hot Five");
+        Company hotSeven = new Company("Hot Seven");
+        Company allStars = new Company("All Stars");
+
+        hotFive.getEmployees().add(louisArmstrong);
+        hotFive.getEmployees().add(frankSinatra);
+        hotSeven.getEmployees().add(louisArmstrong);
+        hotSeven.getEmployees().add(ellaFitzgerald);
+        allStars.getEmployees().add(louisArmstrong);
+        allStars.getEmployees().add(frankSinatra);
+        allStars.getEmployees().add(ellaFitzgerald);
+
+        louisArmstrong.getCompanies().add(hotFive);
+        louisArmstrong.getCompanies().add(hotSeven);
+        louisArmstrong.getCompanies().add(allStars);
+        frankSinatra.getCompanies().add(hotFive);
+        frankSinatra.getCompanies().add(allStars);
+        ellaFitzgerald.getCompanies().add(hotSeven);
+        ellaFitzgerald.getCompanies().add(allStars);
+
+        companyDao.save(hotFive);
+        int hotFiveId = hotFive.getId();
+        System.out.println("hot 5 " + hotFiveId);
+        companyDao.save(hotSeven);
+        int hotSevenId = hotSeven.getId();
+        System.out.println("hot 7 " + hotSevenId);
+        companyDao.save(allStars);
+        int allStarsId = allStars.getId();
+        System.out.println(allStarsId);
+
+        //When
+        List<Employee> employeeWithGivenLastName = employeeDao.retrieveEmployeesWithGivenLastname("Armstrong");
+        List<Company> companiesNamesBeginningWithThreeLetters = companyDao.retrieveCompaniesNamesBeginningWithThreeLetters("Hot");
+
+        //Then
+        Assert.assertEquals(1, employeeWithGivenLastName.size());
+        Assert.assertEquals(2, companiesNamesBeginningWithThreeLetters.size());
+
+        //Cleanup
+        companyDao.deleteById(allStarsId);
+        companyDao.deleteById(hotSevenId);
+        companyDao.deleteById(hotFiveId);
     }
 }
