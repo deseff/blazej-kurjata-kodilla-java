@@ -95,13 +95,10 @@ public class CompanyDaoTestSuite {
 
         companyDao.save(hotFive);
         int hotFiveId = hotFive.getId();
-        System.out.println("hot 5 " + hotFiveId);
         companyDao.save(hotSeven);
         int hotSevenId = hotSeven.getId();
-        System.out.println("hot 7 " + hotSevenId);
         companyDao.save(allStars);
         int allStarsId = allStars.getId();
-        System.out.println(allStarsId);
 
         //When
         List<Employee> employeeWithGivenLastName = employeeDao.retrieveEmployeesWithGivenLastname("Armstrong");
