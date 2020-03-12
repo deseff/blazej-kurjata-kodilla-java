@@ -13,8 +13,8 @@ public class Student implements Observable {
 
     public Student(String surname, KodillaCourses courseName) {
         this.surname = surname;
-        observers = new ArrayList<>();
-        homeworks = new LinkedHashMap<>();
+        this.observers = new ArrayList<>();
+        this.homeworks = new LinkedHashMap<>();
         this.courseName = courseName;
     }
 
