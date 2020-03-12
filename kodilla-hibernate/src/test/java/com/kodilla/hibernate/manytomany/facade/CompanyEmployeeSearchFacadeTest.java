@@ -24,14 +24,12 @@ public class CompanyEmployeeSearchFacadeTest {
     @Autowired
     private EmployeeDao employeeDao;
 
-    private ArrayList<Company> resultCompanyList = new ArrayList<>();
-    private ArrayList<Employee> resultEmployeeList = new ArrayList<>();
-
-
     @Test
     public void retrieveCompanyLikeTest() {
 
         //Given
+        ArrayList<Company> resultCompanyList = new ArrayList<>();
+
         Employee johnSmith = new Employee("John", "Smith");
         Employee stephanieClarcson = new Employee("Stephanie", "Clarcson");
         Employee lindaKovalsky = new Employee("Linda", "Kovalsky");
@@ -82,6 +80,9 @@ public class CompanyEmployeeSearchFacadeTest {
 
     @Test
     public void retrieveEmployeeLikeTest() {
+
+        //Given
+        ArrayList<Employee> resultEmployeeList = new ArrayList<>();
 
         Employee louisArmstrong = new Employee("Louis", "Armstrong");
         Employee frankSinatra = new Employee("Frank", "Sinatra");
