@@ -2,14 +2,19 @@ package com.kodilla.patterns2.adapter.bookclasifier;
 
 import com.kodilla.patterns2.adapter.bookclasifier.librarya.Classifier;
 import com.kodilla.patterns2.adapter.bookclasifier.libraryb.BookSignature;
+import com.kodilla.patterns2.adapter.bookclasifier.libraryb.Statistics;
 
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
 public class MedianAdapter extends MedianAdaptee implements Classifier {
+    public MedianAdapter(Statistics statistics) {
+        super(statistics);
+    }
+
     @Override
-    public int publicationYearMedian(Set<com.kodilla.patterns2.adapter.bookclasifier.librarya.Book> bookSet) {
+    public double publicationYearMedian(Set<com.kodilla.patterns2.adapter.bookclasifier.librarya.Book> bookSet) {
 
         Map<BookSignature, com.kodilla.patterns2.adapter.bookclasifier.libraryb.Book> bookMap =
                 new HashMap<>();

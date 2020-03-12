@@ -1,6 +1,7 @@
 package com.kodilla.patterns2.adapter.bookclasifier;
 
 import com.kodilla.patterns2.adapter.bookclasifier.librarya.Book;
+import com.kodilla.patterns2.adapter.bookclasifier.libraryb.Statistics;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +13,7 @@ public class MedianAdapterTestSuite {
     @Test
     public void publicationYearMedianTest() {
         //Given
-        MedianAdapter medianAdapter = new MedianAdapter();
+        MedianAdapter medianAdapter = new MedianAdapter(new Statistics());
         Set<Book> bookA = new HashSet<>();
         bookA.add(new Book("Tom Clancy",
                 "The Hunt for Red October",
@@ -32,9 +33,9 @@ public class MedianAdapterTestSuite {
                 "978-83-287-0886-0"));
 
         //When
-        int median = medianAdapter.publicationYearMedian(bookA);
+        double median = medianAdapter.publicationYearMedian(bookA);
 
         //Then
-        Assert.assertEquals(2005, median);
+        Assert.assertEquals(2005, median, 0);
     }
 }
