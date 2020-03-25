@@ -7,9 +7,9 @@ public class HomeworkTestSuite {
     @Test
     public void testUpdateHomeworks(){
         //Given
-        Student piotrSchmit = new Student("Piotr Schmit", KodillaCourses.Java_Developer);
-        Student adamZielinski  =new Student("Adam Zieliński", KodillaCourses.Python_Developer);
-        Student adamOstrowski = new Student("Adam Ostrowski", KodillaCourses.Web_Developer);
+        Student piotrSchmit = new Student("Piotr Schmit", KodillaCourses.JAVA_DEVELOPER);
+        Student adamZielinski  =new Student("Adam Zieliński", KodillaCourses.PYTHON_DEVELOPER);
+        Student adamOstrowski = new Student("Adam Ostrowski", KodillaCourses.WEB_DEVELOPER);
 
         Mentor tomaszStanko = new Mentor("Tomasz Stańko");
         Mentor michalUrbanski = new Mentor("Michał Urbański");
